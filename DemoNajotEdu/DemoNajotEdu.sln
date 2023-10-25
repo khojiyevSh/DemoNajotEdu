@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoNajotEdu.Domain", "Demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoNajotEdu.Infrastructure", "DemoNajotEdu.Infrastructure\DemoNajotEdu.Infrastructure.csproj", "{56E0C9BF-A1BA-4934-A8B8-B9D91A1BCC50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoNajotEdu.Application", "DemoNajotEdu.Application\DemoNajotEdu.Application.csproj", "{9CFD598D-D0A0-4EAF-9896-E7BD03119473}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{56E0C9BF-A1BA-4934-A8B8-B9D91A1BCC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56E0C9BF-A1BA-4934-A8B8-B9D91A1BCC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E0C9BF-A1BA-4934-A8B8-B9D91A1BCC50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CFD598D-D0A0-4EAF-9896-E7BD03119473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CFD598D-D0A0-4EAF-9896-E7BD03119473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CFD598D-D0A0-4EAF-9896-E7BD03119473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CFD598D-D0A0-4EAF-9896-E7BD03119473}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

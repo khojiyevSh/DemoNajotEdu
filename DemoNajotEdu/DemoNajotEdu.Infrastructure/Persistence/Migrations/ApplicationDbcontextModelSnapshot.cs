@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DemoNajotEdu.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbcontext))]
+    [DbContext(typeof(ApplicationDcontext))]
     partial class ApplicationDbcontextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -187,7 +187,17 @@ namespace DemoNajotEdu.Infrastructure.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("users");
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FullName = "Adminov admin",
+                            PasswordHash = "2646720E1B4B3B960107335AC274F819510741B41A2254C7F17FF39110C89919D0F10F29E2A5BAC9976E2CA3358B1AC65BDC63AEAB83B59F792F188EDE1C9846",
+                            Role = 1,
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("DemoNajotEdu.Domain.Entities.Attendence", b =>

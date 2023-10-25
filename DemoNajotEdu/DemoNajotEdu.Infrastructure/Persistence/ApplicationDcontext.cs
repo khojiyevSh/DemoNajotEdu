@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DemoNajotEdu.Infrastructure.Persistence
 {
-    public class ApplicationDbcontext : DbContext
+    public class ApplicationDcontext : DbContext
     {
-        public DbSet<User>? users { get; set; }
+        public DbSet<User>? Users { get; set; }
         public DbSet<Student>? Students { get; set; }
         public DbSet<StudentGroup>? StudentGroups { get; set; }
         public DbSet<Lesson>? Lessons { get; set; }
         public DbSet<Attendence>? Attenants { get; set; }
         public DbSet<Group>? Groups { get; set; }
 
-        public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options)
+        public ApplicationDcontext(DbContextOptions<ApplicationDcontext> options)
          :base(options)
         {
         }
