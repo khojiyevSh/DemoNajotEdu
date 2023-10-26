@@ -21,7 +21,7 @@ namespace DemoNajotEdu.Infrastructure
             services.AddDbContext<ApplicationDbcontext>(options => 
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddScoped<IApplecationDbContext, ApplicationDbcontext>();
+            services.AddScoped<IApplecationDbContext, ApplicationDbcontext>();
             services.AddScoped<ITokenService, JWTService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IHashProvider,HashProvider>();
