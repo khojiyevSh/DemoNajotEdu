@@ -1,11 +1,12 @@
-﻿using System.Security.Cryptography;
+﻿using DemoNajotEdu.Application.Abstractions;
+using System.Security.Cryptography;
 using System.Text;
 
-namespace DemoNajotEdu.Infrastructure.Utills
+namespace DemoNajotEdu.Infrastructure.HashProviders
 {
-    public class HashGenerator
+    public class HashProvider : IHashProvider
     {
-        public static string Generator(string password)
+        public string GetHash(string key)
         {
             const int keySize = 64;
             const int iterations = 320000;
@@ -14,7 +15,7 @@ namespace DemoNajotEdu.Infrastructure.Utills
 
 
             var hash = Rfc2898DeriveBytes.Pbkdf2(
-                Encoding.UTF8.GetBytes(password),
+                Encoding.UTF8.GetBytes(key),
                  new byte[0],
                 iterations,
                 hashAlgorithmName,

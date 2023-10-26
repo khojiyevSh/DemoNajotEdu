@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DemoNajotEdu.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDcontext))]
+    [DbContext(typeof(ApplicationDbcontext))]
     [Migration("20231025215520_addedAdmin")]
     partial class addedAdmin
     {

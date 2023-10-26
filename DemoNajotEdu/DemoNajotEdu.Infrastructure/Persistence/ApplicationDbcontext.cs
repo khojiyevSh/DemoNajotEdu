@@ -1,19 +1,20 @@
-﻿using DemoNajotEdu.Domain.Entities;
+﻿using DemoNajotEdu.Application.Abstractions;
+using DemoNajotEdu.Domain.Entities;
 using DemoNajotEdu.Infrastructure.Persistence.EntityTypeConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoNajotEdu.Infrastructure.Persistence
 {
-    public class ApplicationDcontext : DbContext
+    public class ApplicationDbcontext : DbContext, IApplecationDbContext
     {
-        public DbSet<User>? Users { get; set; }
-        public DbSet<Student>? Students { get; set; }
-        public DbSet<StudentGroup>? StudentGroups { get; set; }
-        public DbSet<Lesson>? Lessons { get; set; }
-        public DbSet<Attendence>? Attenants { get; set; }
-        public DbSet<Group>? Groups { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<StudentGroup> StudentGroups { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Attendence> Attenants { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
-        public ApplicationDcontext(DbContextOptions<ApplicationDcontext> options)
+        public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options)
          :base(options)
         {
         }

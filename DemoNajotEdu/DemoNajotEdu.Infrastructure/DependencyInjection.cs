@@ -1,5 +1,7 @@
-﻿using DemoNajotEdu.Domain.Enums;
+﻿using DemoNajotEdu.Application.Abstractions;
+using DemoNajotEdu.Domain.Enums;
 using DemoNajotEdu.Infrastructure.Abstractions;
+using DemoNajotEdu.Infrastructure.HashProviders;
 using DemoNajotEdu.Infrastructure.Persistence;
 using DemoNajotEdu.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,11 +18,14 @@ namespace DemoNajotEdu.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, 
             IConfiguration configuration) 
         {
-            services.AddDbContext<ApplicationDcontext>(options => 
+            services.AddDbContext<ApplicationDbcontext>(options => 
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
+            //services.AddScoped<IApplecationDbContext, ApplicationDbcontext>();
             services.AddScoped<ITokenService, JWTService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IHashProvider,HashProvider>();
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
               .AddJwtBearer(options =>

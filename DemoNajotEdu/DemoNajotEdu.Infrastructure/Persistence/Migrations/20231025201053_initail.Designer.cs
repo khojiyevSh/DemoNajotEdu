@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DemoNajotEdu.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDcontext))]
+    [DbContext(typeof(ApplicationDbcontext))]
     [Migration("20231025201053_initail")]
     partial class initail
     {

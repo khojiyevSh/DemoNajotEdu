@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DemoNajotEdu.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDcontext))]
+    [DbContext(typeof(ApplicationDbcontext))]
     partial class ApplicationDbcontextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
