@@ -49,6 +49,15 @@ namespace DemoNajotEdu.Infrastructure
                     polisy.RequireClaim("Role", UserRole.Admin.ToString());
                 });
             });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("TeachersAction", policy =>
+                {
+                    policy.RequireClaim("Role", UserRole.Teacher.ToString());
+                });
+            });
+
             return services;
         }
     }
