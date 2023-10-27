@@ -1,5 +1,6 @@
 ﻿using DemoNajotEdu.Application.Abstractions;
 using DemoNajotEdu.Application.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,8 @@ namespace DemoNajotEdu.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy ="TeachersAction")]
+    [Authorize(Policy ="AdminsAction")]
     public class StudentController : ControllerBase
     {
 
