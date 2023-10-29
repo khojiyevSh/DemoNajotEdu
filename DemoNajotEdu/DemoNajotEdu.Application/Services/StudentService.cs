@@ -1,7 +1,6 @@
 ﻿using DemoNajotEdu.Application.Abstractions;
 using DemoNajotEdu.Application.Models.CrudStudentAction;
 using DemoNajotEdu.Domain.Entities;
-using DemoNajotEdu.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoNajotEdu.Application.Services

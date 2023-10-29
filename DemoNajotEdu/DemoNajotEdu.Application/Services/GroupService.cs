@@ -1,6 +1,6 @@
 ﻿using DemoNajotEdu.Application.Abstractions;
 using DemoNajotEdu.Application.Models.CrudGroupAction;
-using DemoNajotEdu.Application.Models.CrudSudentGroupAction;
+using DemoNajotEdu.Application.Models.CrudStudentGroupAction;
 using DemoNajotEdu.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 

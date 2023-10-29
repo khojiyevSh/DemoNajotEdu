@@ -1,5 +1,5 @@
 ﻿using DemoNajotEdu.Application.Models.CrudGroupAction;
-using DemoNajotEdu.Application.Models.CrudSudentGroupAction;
+using DemoNajotEdu.Application.Models.CrudStudentGroupAction;
 
 namespace DemoNajotEdu.Application.Abstractions
 {
