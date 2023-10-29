@@ -1,4 +1,4 @@
-﻿namespace DemoNajotEdu.Application.Models
+﻿namespace DemoNajotEdu.Application.Models.CrudTeacherAction
 {
     public class ViewTeacherModel
     {

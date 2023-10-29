@@ -13,7 +13,7 @@
 
         public DateTime Bithday { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
         public string PhoneNummber { get; set; }=string.Empty;
 

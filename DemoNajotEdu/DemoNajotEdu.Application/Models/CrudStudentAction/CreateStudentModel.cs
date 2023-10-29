@@ -1,4 +1,4 @@
-﻿namespace DemoNajotEdu.Application.Models
+﻿namespace DemoNajotEdu.Application.Models.CrudStudentAction
 {
     public class CreateStudentModel
     {
@@ -7,5 +7,8 @@
         public DateTime Bithday { get; set; }
 
         public string PhoneNummber { get; set; } = string.Empty;
+
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+
     }
 }

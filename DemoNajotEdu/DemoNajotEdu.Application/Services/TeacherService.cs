@@ -1,5 +1,5 @@
 ﻿using DemoNajotEdu.Application.Abstractions;
-using DemoNajotEdu.Application.Models;
+using DemoNajotEdu.Application.Models.CrudTeacherAction;
 using DemoNajotEdu.Domain.Entities;
 using DemoNajotEdu.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -58,7 +58,7 @@ namespace DemoNajotEdu.Application.Services
                 .ToListAsync();
         }
 
-        public async Task<ViewTeacherModel> GetByAsync(int id)
+        public async Task<ViewTeacherModel> GetByIdAsync(int id)
         {
             var entity = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id && x.Role == UserRole.Teacher);
 
