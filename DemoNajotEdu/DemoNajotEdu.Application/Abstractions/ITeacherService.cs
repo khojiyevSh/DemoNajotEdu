@@ -1,13 +1,9 @@
-﻿using DemoNajotEdu.Application.Models;
+﻿
+using DemoNajotEdu.Application.Models.CrudTeacherAction;
 
 namespace DemoNajotEdu.Application.Abstractions
 {
-    public interface ITeacherService
+    public interface ITeacherService : ICrudService<int, CreateTeacherModel, UpdateTeacherModel, ViewTeacherModel>
     {
-        Task CreateAsync(CreateTeacherModel model);
-        Task DeleteAsync(int id);
-        Task UpdateAsync(UpdateTeacherModel model);
-        Task<List<ViewTeacherModel>> GetByallAsync();
-        Task<ViewTeacherModel> GetByAsync(int id);
     }
 }

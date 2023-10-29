@@ -1,13 +1,8 @@
-﻿using DemoNajotEdu.Application.Models;
+﻿using DemoNajotEdu.Application.Models.CrudStudentAction;
 
 namespace DemoNajotEdu.Application.Abstractions
 {
-    public interface IStudentService
+    public interface IStudentService : ICrudService<int, CreateStudentModel, UpdateGroupModel,ViewGroupModel>
     {
-        Task CreateAsync(CreateStudentModel model);
-        Task DeleteAsync(int id);
-        Task UpdateAsync(UpdateStudentModel model);
-        Task<ViewStudentModel> GetByIdAsync(int id);
-        Task<List<ViewStudentModel>> GetByallAsync();
     }
 }

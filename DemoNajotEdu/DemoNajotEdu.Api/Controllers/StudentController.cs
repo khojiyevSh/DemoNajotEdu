@@ -1,59 +1,54 @@
 ﻿using DemoNajotEdu.Application.Abstractions;
-using DemoNajotEdu.Application.Models;
+using DemoNajotEdu.Application.Models.CrudStudentAction;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoNajotEdu.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policy ="TeachersAction")]
     [Authorize(Policy ="AdminsAction")]
+
     public class StudentController : ControllerBase
     {
 
-        private readonly IStudentService _service;
+        private readonly IStudentService _studentservice;
 
-        public StudentController(IStudentService service)
+        public StudentController(IStudentService studentservice)
         {
-            _service = service;
+            _studentservice = studentservice;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateStudentModel model)
         {
-            await _service.CreateAsync(model);
+            await _studentservice.CreateAsync(model);
             return Ok();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBy(int id)
         {
-            await _service.GetByIdAsync(id);
-
-            return Ok();
+            return Ok(await _studentservice.GetByIdAsync(id));
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBy()
+        public async Task<IActionResult> GetByAll()
         {
-            await _service.GetByallAsync();
-
-            return Ok();
+            return Ok(await _studentservice.GetByallAsync());
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
+            await _studentservice.DeleteAsync(id);
 
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateStudentModel model)
+        public async Task<IActionResult> Update(UpdateGroupModel model)
         {
-            await _service.UpdateAsync(model);
+            await _studentservice.UpdateAsync(model);
 
             return Ok();
         }

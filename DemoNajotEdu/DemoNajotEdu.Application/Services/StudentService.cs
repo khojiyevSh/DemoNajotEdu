@@ -1,5 +1,5 @@
 ﻿using DemoNajotEdu.Application.Abstractions;
-using DemoNajotEdu.Application.Models;
+using DemoNajotEdu.Application.Models.CrudStudentAction;
 using DemoNajotEdu.Domain.Entities;
 using DemoNajotEdu.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +9,10 @@ namespace DemoNajotEdu.Application.Services
     public class StudentService : IStudentService
     {
         private readonly IApplecationDbContext _dbContext;
-        private readonly IHashProvider _hashProvider;
 
-        public StudentService(IApplecationDbContext dbContext, IHashProvider hashProvider)
+        public StudentService(IApplecationDbContext dbContext)
         {
             _dbContext = dbContext;
-            _hashProvider = hashProvider;
         }
 
         public async Task CreateAsync(CreateStudentModel model)
@@ -43,10 +41,10 @@ namespace DemoNajotEdu.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<ViewStudentModel>> GetByallAsync()
+        public async Task<List<ViewGroupModel>> GetByallAsync()
         {
             return await _dbContext.Students
-               .Select(x => new ViewStudentModel()
+               .Select(x => new ViewGroupModel()
                 {
                     Id = x.Id,
                     FullName = x.FullName,
@@ -57,7 +55,7 @@ namespace DemoNajotEdu.Application.Services
                 .ToListAsync();
         }
 
-        public async Task<ViewStudentModel> GetByIdAsync(int id)
+        public async Task<ViewGroupModel> GetByIdAsync(int id)
         {
             var entity = await _dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -66,7 +64,7 @@ namespace DemoNajotEdu.Application.Services
                 throw new Exception("Not Found");
             }
 
-            return new ViewStudentModel()
+            return new ViewGroupModel()
             {
                 Id = entity.Id,
                 FullName = entity.FullName,
@@ -77,7 +75,7 @@ namespace DemoNajotEdu.Application.Services
 
         }
 
-        public async Task UpdateAsync(UpdateStudentModel model)
+        public async Task UpdateAsync(UpdateGroupModel model)
         {
             var entity = await _dbContext.Students.FirstOrDefaultAsync(x => x.Id == model.Id);
 

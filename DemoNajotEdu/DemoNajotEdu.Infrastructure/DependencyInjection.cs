@@ -57,6 +57,8 @@ namespace DemoNajotEdu.Infrastructure
                     policy.RequireClaim("Role", UserRole.Teacher.ToString());
                 });
             });
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
 
             return services;
         }

@@ -1,3 +1,4 @@
+using DemoNajotEdu.Api.Models;
 using DemoNajotEdu.Application;
 using DemoNajotEdu.Infrastructure;
 using Microsoft.OpenApi.Models;
@@ -13,8 +14,18 @@ builder.Services.AddApplication();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+
+builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+                });
+
 builder.Services.AddSwaggerGen(options =>
 {
+    options.CustomSchemaIds(type => type.FullName);
+
     options.SwaggerDoc("V1", new OpenApiInfo()
     {
         Version = "V1",
@@ -63,6 +74,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
