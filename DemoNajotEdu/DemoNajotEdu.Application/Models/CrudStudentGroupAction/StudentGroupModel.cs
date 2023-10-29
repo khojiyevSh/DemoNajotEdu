@@ -1,4 +1,4 @@
-﻿namespace DemoNajotEdu.Application.Models.CrudSudentGroupAction
+﻿namespace DemoNajotEdu.Application.Models.CrudStudentGroupAction
 {
     public class StudentGroupModel
     {
