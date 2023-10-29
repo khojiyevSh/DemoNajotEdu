@@ -21,7 +21,7 @@ namespace DemoNajotEdu.Infrastructure.Services
 
             var claims = new Claim[]
             {
-                new Claim(JwtRegisteredClaimNames.Name, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Name,user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("Role", user.Role.ToString())
             };

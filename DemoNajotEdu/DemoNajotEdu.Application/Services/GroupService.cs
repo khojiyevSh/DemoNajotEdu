@@ -1,6 +1,7 @@
 ﻿using DemoNajotEdu.Application.Abstractions;
 using DemoNajotEdu.Application.Models.CrudGroupAction;
 using DemoNajotEdu.Application.Models.CrudStudentGroupAction;
+using DemoNajotEdu.Application.Models.LessonModel;
 using DemoNajotEdu.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -148,11 +149,27 @@ namespace DemoNajotEdu.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<List<LessonViewModel>> GetlessonsAsync(int groupId)
+        {
+           var lessons =  await _dbContext.Lessons.Where(x => x.GroupId == groupId)
+                .Select(x => new LessonViewModel()
+                {
+                    Id = x.Id,
+                    EndDateTime = x.EndDateTime,
+                    StartDateTime=x.StartDateTime,
+                    GroupId =groupId
+
+                }).ToListAsync();
+
+            return lessons;
+        }
+
         public async Task DeleteGroupStudentAsync(int groubId, int studentId)
         {
 
             var studentGroup =
-                await _dbContext.StudentGroups.FirstOrDefaultAsync(x => x.StudentId == studentId && x.GroupId == groubId);
+                await _dbContext.StudentGroups
+                                .FirstOrDefaultAsync(x => x.StudentId == studentId && x.GroupId == groubId);
 
             _dbContext.StudentGroups.Remove(studentGroup);
 

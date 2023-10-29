@@ -8,8 +8,6 @@ namespace DemoNajotEdu.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policy = "AdminsAction")]
-
     public class GroupController : ControllerBase
     {
         private readonly IGroupService _groupservice;
@@ -20,6 +18,7 @@ namespace DemoNajotEdu.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "AdminsAction")]
         public async Task<IActionResult> Create(CreateGroupModel model)
         {
             await _groupservice.CreateAsync(model);
@@ -27,18 +26,29 @@ namespace DemoNajotEdu.Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetBy(int id)
         {
             return Ok(await _groupservice.GetByIdAsync(id));
         }
 
+        [HttpGet("{groupId}/lessons")]
+        [Authorize]
+        public async Task<IActionResult> GetLesson(int groupId)
+        {
+            var groups = await _groupservice.GetlessonsAsync(groupId);
+            return Ok(groups);
+        }
+
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetByAll()
         {
             return Ok(await _groupservice.GetByallAsync());
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "AdminsAction")]
         public async Task<IActionResult> Delete(int id)
         {
             await _groupservice.DeleteAsync(id);
@@ -46,6 +56,7 @@ namespace DemoNajotEdu.Api.Controllers
             return Ok();
         }
         [HttpPut]
+        [Authorize(Policy = "AdminsAction")]
         public async Task<IActionResult> Update(UpdateGroupModel model)
         {
             await _groupservice.UpdateAsync(model);
@@ -54,6 +65,7 @@ namespace DemoNajotEdu.Api.Controllers
         }
 
         [HttpPost("{groupId}/studentId")]
+        [Authorize(Policy = "AdminsAction")]
         public async Task<IActionResult> AddStudent([FromRoute] int groupId, [FromBody] StudentGroupModel model)
         {
             await _groupservice.AddGroupStudentAsync(groupId, model);
@@ -62,11 +74,13 @@ namespace DemoNajotEdu.Api.Controllers
         }
 
         [HttpDelete("{groupId}/studentId")]
-        public async Task<IActionResult> DeleteStudent([FromRoute] int groupId,[FromBody] int studentId)
+        [Authorize(Policy = "AdminsAction")]
+        public async Task<IActionResult> DeleteStudent([FromRoute] int groupId, [FromBody] int studentId)
         {
             await _groupservice.DeleteGroupStudentAsync(groupId, studentId);
 
             return Ok();
         }
+
     }
 }
