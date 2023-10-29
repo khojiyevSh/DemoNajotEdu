@@ -1,6 +1,6 @@
 ﻿namespace DemoNajotEdu.Application.Models.CrudStudentAction
 {
-    public class ViewGroupModel
+    public class ViewStudentModel
     {
         public int Id { get; set; }
 

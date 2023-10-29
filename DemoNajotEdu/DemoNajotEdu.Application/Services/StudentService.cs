@@ -41,10 +41,10 @@ namespace DemoNajotEdu.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<ViewGroupModel>> GetByallAsync()
+        public async Task<List<ViewStudentModel>> GetByallAsync()
         {
             return await _dbContext.Students
-               .Select(x => new ViewGroupModel()
+               .Select(x => new ViewStudentModel()
                 {
                     Id = x.Id,
                     FullName = x.FullName,
@@ -55,7 +55,7 @@ namespace DemoNajotEdu.Application.Services
                 .ToListAsync();
         }
 
-        public async Task<ViewGroupModel> GetByIdAsync(int id)
+        public async Task<ViewStudentModel> GetByIdAsync(int id)
         {
             var entity = await _dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -64,7 +64,7 @@ namespace DemoNajotEdu.Application.Services
                 throw new Exception("Not Found");
             }
 
-            return new ViewGroupModel()
+            return new ViewStudentModel()
             {
                 Id = entity.Id,
                 FullName = entity.FullName,
@@ -75,7 +75,7 @@ namespace DemoNajotEdu.Application.Services
 
         }
 
-        public async Task UpdateAsync(UpdateGroupModel model)
+        public async Task UpdateAsync(UpdateStudentModel model)
         {
             var entity = await _dbContext.Students.FirstOrDefaultAsync(x => x.Id == model.Id);
 

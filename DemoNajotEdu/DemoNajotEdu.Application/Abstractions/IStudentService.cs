@@ -2,7 +2,7 @@
 
 namespace DemoNajotEdu.Application.Abstractions
 {
-    public interface IStudentService : ICrudService<int, CreateStudentModel, UpdateGroupModel,ViewGroupModel>
+    public interface IStudentService : ICrudService<int, CreateStudentModel, UpdateStudentModel,ViewStudentModel>
     {
     }
 }
