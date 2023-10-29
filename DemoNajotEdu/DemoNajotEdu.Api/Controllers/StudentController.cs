@@ -46,7 +46,7 @@ namespace DemoNajotEdu.Api.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateGroupModel model)
+        public async Task<IActionResult> Update(UpdateStudentModel model)
         {
             await _studentservice.UpdateAsync(model);
 

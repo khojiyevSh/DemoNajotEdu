@@ -1,6 +1,6 @@
 ﻿namespace DemoNajotEdu.Application.Models.CrudStudentAction
 {
-    public class UpdateGroupModel
+    public class UpdateStudentModel
     {
         public int Id { get; set; }
 
