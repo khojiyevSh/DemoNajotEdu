@@ -13,7 +13,6 @@ namespace DemoNajotEdu.Application.Services
         {
             _dbcontext = dbcontext;
             _currentUserService = currentUserService;
-
         }
 
         public async Task CheckAsync(DoAttendeceCheckModel model)
@@ -22,11 +21,11 @@ namespace DemoNajotEdu.Application.Services
                                          .Include(x => x.Group)
                                          .FirstOrDefaultAsync(x => x.Id == model.LessonId);
 
-                
                 if(lesson == null || lesson.Group.TeacherId != _currentUserService.UserId )
                 {
                 throw new Exception("Not Found");
                 }
+
             var groubStudents = await _dbcontext.Lessons
                 .Where(x=>x.Id == model.LessonId)
                 .Include(x => x.Group)

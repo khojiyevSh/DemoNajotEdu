@@ -47,6 +47,7 @@ namespace DemoNajotEdu.Application.Services
         public async Task<List<ViewTeacherModel>> GetByallAsync()
         {
             return await _dbContext.Users
+
                 .Where(x => x.Role == UserRole.Teacher)
                 .Select(x => new ViewTeacherModel()
                 {
@@ -73,7 +74,6 @@ namespace DemoNajotEdu.Application.Services
                 FullName = entity.UserName,
                 UserName = entity.UserName,
             };
-            
         }
 
         public async Task UpdateAsync(UpdateTeacherModel model)

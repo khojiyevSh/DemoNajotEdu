@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoNajotEdu.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/groups")]
     [ApiController]
     public class GroupController : ControllerBase
     {
@@ -36,8 +36,7 @@ namespace DemoNajotEdu.Api.Controllers
         [Authorize]
         public async Task<IActionResult> GetLesson(int groupId)
         {
-            var groups = await _groupservice.GetlessonsAsync(groupId);
-            return Ok(groups);
+            return Ok(await _groupservice.GetlessonsAsync(groupId));
         }
 
         [HttpGet]
@@ -64,23 +63,22 @@ namespace DemoNajotEdu.Api.Controllers
             return Ok();
         }
 
-        [HttpPost("{groupId}/studentId")]
+        [HttpPost("{groupId}/student")]
         [Authorize(Policy = "AdminsAction")]
-        public async Task<IActionResult> AddStudent([FromRoute] int groupId, [FromBody] StudentGroupModel model)
+        public async Task<IActionResult> AddStudent([FromRoute] int groupId, [FromBody] StudentGroupModel student)
         {
-            await _groupservice.AddGroupStudentAsync(groupId, model);
+            await _groupservice.AddGroupStudentAsync(groupId, student);
 
             return Ok();
         }
 
         [HttpDelete("{groupId}/studentId")]
         [Authorize(Policy = "AdminsAction")]
-        public async Task<IActionResult> DeleteStudent([FromRoute] int groupId, [FromBody] int studentId)
+        public async Task<IActionResult> DeleteStudent([FromRoute] int groupId, [FromForm] int studentId)
         {
             await _groupservice.DeleteGroupStudentAsync(groupId, studentId);
 
             return Ok();
         }
-
     }
 }

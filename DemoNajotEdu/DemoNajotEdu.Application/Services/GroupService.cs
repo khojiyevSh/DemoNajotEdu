@@ -79,7 +79,6 @@ namespace DemoNajotEdu.Application.Services
                 EndDate = entity.EndDate,
                 TeacherId = entity.TeacherId,
             };
-
         }
 
         public async Task UpdateAsync(UpdateGroupModel model)
@@ -115,14 +114,11 @@ namespace DemoNajotEdu.Application.Services
                         StartDateTime = (currentDay.Date + startTimeLesson).ToLocalTime(),
                         EndDateTime = (currentDay.Date + endTimeLesson).ToLocalTime(),
                     };
-
                     lessenes.Add(lesson);
                 }
-
                 currentDay = currentDay.AddDays(1);
             }
             return lessenes;
-
         }
 
         public async Task AddGroupStudentAsync(int groubId , StudentGroupModel model)
@@ -166,7 +162,6 @@ namespace DemoNajotEdu.Application.Services
 
         public async Task DeleteGroupStudentAsync(int groubId, int studentId)
         {
-
             var studentGroup =
                 await _dbContext.StudentGroups
                                 .FirstOrDefaultAsync(x => x.StudentId == studentId && x.GroupId == groubId);
@@ -175,7 +170,6 @@ namespace DemoNajotEdu.Application.Services
 
             await _dbContext.SaveChangesAsync();
         }
-
     }
 }
 

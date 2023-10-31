@@ -71,7 +71,6 @@ namespace DemoNajotEdu.Application.Services
                 CreatedDate = entity.CreatedDate,
                 PhoneNummber =entity.PhoneNummber,
             };
-
         }
 
         public async Task UpdateAsync(UpdateStudentModel model)
