@@ -70,7 +70,11 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("/swagger/V1/swagger.json", "DemoNajotEDuApi");
     });
-}
+
+
+}app.UseStaticFiles();
+
+app.UseDirectoryBrowser();
 
 app.UseHttpsRedirection();
 

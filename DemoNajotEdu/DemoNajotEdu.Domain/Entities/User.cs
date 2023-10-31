@@ -18,6 +18,8 @@ namespace DemoNajotEdu.Domain.Entities
 
         public UserRole Role { get; set; }
 
+        public string? UploadFile { get; set; } 
+
 
         public ICollection<Group>? Groups { get; set; }
 

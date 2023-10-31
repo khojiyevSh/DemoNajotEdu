@@ -26,6 +26,7 @@ namespace DemoNajotEdu.Infrastructure
             services.AddScoped<ITokenService, JWTService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IHashProvider,HashProvider>();
+            services.AddScoped<IFileUploadService,FileUploadServie>();
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -58,6 +59,7 @@ namespace DemoNajotEdu.Infrastructure
                     policy.RequireClaim("Role", UserRole.Teacher.ToString());
                 });
             });
+
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
 

@@ -12,8 +12,8 @@ namespace DemoNajotEdu.Application
             services.AddScoped<IStudentService,StudentService>();
             services.AddScoped<IGroupService, GroupService>();
             services.AddScoped<IAttendenceService, AttendenceService>();
+            services.AddScoped<IProfileFileUploadService, ProfileFileUploadService>();
 
-         
             return services;
         }
     }

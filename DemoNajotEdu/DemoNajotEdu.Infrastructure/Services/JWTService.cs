@@ -18,13 +18,13 @@ namespace DemoNajotEdu.Infrastructure.Services
         }
         public string GenerateAccessToken(User user)
         {
-
             var claims = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Name,user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("Role", user.Role.ToString())
             };
+
             var credentials = new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])),
                 SecurityAlgorithms.HmacSha256);
