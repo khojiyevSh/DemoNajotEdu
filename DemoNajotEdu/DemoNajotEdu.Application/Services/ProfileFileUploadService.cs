@@ -12,7 +12,11 @@ namespace DemoNajotEdu.Application.Services
         private readonly IFileUploadService _uploadService;
         private readonly ICurrentUserService _currentUserService;
 
-        public ProfileFileUploadService(IApplecationDbContext context,IFileUploadService uploadService,ICurrentUserService currentUserService)
+        public ProfileFileUploadService(
+            IApplecationDbContext context,
+            IFileUploadService uploadService,
+            ICurrentUserService currentUserService
+            )
         {
             _context = context;
             _uploadService = uploadService;

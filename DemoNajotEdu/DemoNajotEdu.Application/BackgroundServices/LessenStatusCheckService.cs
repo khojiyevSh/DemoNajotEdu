@@ -1,13 +1,11 @@
-﻿
-
-using DemoNajotEdu.Application.Abstractions;
+﻿using DemoNajotEdu.Application.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace DemoNajotEdu.Application.BackgroundServices
 {
-    public class LessenStatusCheckService : BackgroundService
+    public class LessenStatusCheckService : BackgroundService //IHostedService
     {
         private readonly IServiceProvider _provider;
 
@@ -36,7 +34,6 @@ namespace DemoNajotEdu.Application.BackgroundServices
                 }
 
                 await context.SaveChangesAsync(stoppingToken);
-
             }
         }
     }

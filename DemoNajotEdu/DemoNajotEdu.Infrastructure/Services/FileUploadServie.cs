@@ -17,7 +17,9 @@ namespace DemoNajotEdu.Infrastructure.Services
         {
             var fileNameIteam = formFile.FileName.Split(".");
             var extension = fileNameIteam[fileNameIteam.Length - 1];
-            var fileName = formFile.FileName.Remove(formFile.FileName.IndexOf(extension, StringComparison.InvariantCultureIgnoreCase)-1);
+            var fileName = formFile.FileName
+                .Remove(formFile.FileName
+                .IndexOf(extension, StringComparison.InvariantCultureIgnoreCase)-1);
 
             var path = $"/files/{fileName}-{Guid.NewGuid()}.{extension}";
 
