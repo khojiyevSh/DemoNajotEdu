@@ -16,7 +16,7 @@ namespace DemoNajotEdu.Infrastructure.Services
 
             if (idClaim !=null && int.TryParse(idClaim.Value,out int value))
             {
-                UserId =value;
+                UserId = value;
             }
         }
         

@@ -8,7 +8,8 @@ namespace DemoNajotEdu.Application.Services
     public class AttendenceService : IAttendenceService
     {
         private readonly IApplecationDbContext _dbcontext;
-    private readonly ICurrentUserService _currentUserService;
+        private readonly ICurrentUserService _currentUserService;
+
         public AttendenceService(IApplecationDbContext dbcontext, ICurrentUserService currentUserService)
         {
             _dbcontext = dbcontext;
