@@ -1,8 +1,5 @@
 ﻿using DemoNajotEdu.Application.Abstractions;
-using DemoNajotEdu.Application.Models.ProfileModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.FileProviders;
 
 namespace DemoNajotEdu.Api.Controllers
 {

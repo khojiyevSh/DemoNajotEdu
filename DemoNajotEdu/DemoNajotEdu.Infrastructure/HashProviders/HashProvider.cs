@@ -13,7 +13,6 @@ namespace DemoNajotEdu.Infrastructure.HashProviders
 
             HashAlgorithmName hashAlgorithmName = HashAlgorithmName.SHA512;
 
-
             var hash = Rfc2898DeriveBytes.Pbkdf2(
                 Encoding.UTF8.GetBytes(key),
                  new byte[0],

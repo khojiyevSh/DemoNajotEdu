@@ -1,7 +1,7 @@
-﻿using DemoNajotEdu.Infrastructure.Abstractions;
+﻿using DemoNajotEdu.Application.Abstractions;
+using DemoNajotEdu.Infrastructure.Abstractions;
 using DemoNajotEdu.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using DemoNajotEdu.Application.Abstractions;
 
 namespace DemoNajotEdu.Infrastructure.Services
 {
@@ -11,7 +11,7 @@ namespace DemoNajotEdu.Infrastructure.Services
         private readonly ITokenService _tokenService;
         private readonly IHashProvider _hashProvider;
 
-        public AuthService(ApplicationDbcontext dbContext, ITokenService tokenService,IHashProvider hashProvider)
+        public AuthService(ApplicationDbcontext dbContext, ITokenService tokenService, IHashProvider hashProvider)
         {
             _dbcontext = dbContext;
             _tokenService = tokenService;

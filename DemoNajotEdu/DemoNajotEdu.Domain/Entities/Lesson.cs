@@ -14,6 +14,8 @@
 
         public DateTime EndDateTime { get; set; }
 
+        public bool isDone { get; set; }
+
 
         public Group? Group { get; set; }
 
