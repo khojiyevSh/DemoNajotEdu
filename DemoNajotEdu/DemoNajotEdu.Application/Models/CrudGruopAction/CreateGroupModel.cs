@@ -7,9 +7,9 @@
 
         public int TeacherId { get; set; }
 
-        public DateOnly StartDate { get; set; }
+        public DateOnly StartDateModel { get; set; }
 
-        public DateOnly EndDate { get; set; }
+        public DateOnly EndDateModel { get; set; }
 
 
         public TimeSpan StartTimeLesson { get; set; }

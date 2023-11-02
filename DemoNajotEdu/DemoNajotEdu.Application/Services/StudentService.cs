@@ -1,4 +1,5 @@
-﻿using DemoNajotEdu.Application.Abstractions;
+﻿using AutoMapper;
+using DemoNajotEdu.Application.Abstractions;
 using DemoNajotEdu.Application.Models.CrudStudentAction;
 using DemoNajotEdu.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -8,22 +9,19 @@ namespace DemoNajotEdu.Application.Services
     public class StudentService : IStudentService
     {
         private readonly IApplecationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public StudentService(IApplecationDbContext dbContext)
+        public StudentService(IApplecationDbContext dbContext,IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task CreateAsync(CreateStudentModel model)
         {
-            var entity = new Student()
-            {
-                FullName = model.FullName,
-                PhoneNummber = model.PhoneNummber,
-                Bithday = model.Bithday,
-            };
+            var entity2 = _mapper.Map<Student>(model);
 
-            await _dbContext.Students.AddAsync(entity);
+            await _dbContext.Students.AddAsync(entity2);
             await _dbContext.SaveChangesAsync();
         }
 
@@ -63,30 +61,25 @@ namespace DemoNajotEdu.Application.Services
                 throw new Exception("Not Found");
             }
 
-            return new ViewStudentModel()
-            {
-                Id = entity.Id,
-                FullName = entity.FullName,
-                Bithday = entity.Bithday,
-                CreatedDate = entity.CreatedDate,
-                PhoneNummber =entity.PhoneNummber,
-            };
+            return _mapper.Map<ViewStudentModel>(entity);
         }
 
         public async Task UpdateAsync(UpdateStudentModel model)
         {
-            var entity = await _dbContext.Students.FirstOrDefaultAsync(x => x.Id == model.Id);
-
-            if (entity == null)
-            {
-                throw new Exception("Not Found");
-            }
-
-            entity.FullName = model.FullName ?? entity.FullName;
-            entity.PhoneNummber = model.PhoneNummber ?? entity.PhoneNummber;
+            var entity = await _dbContext.Students.FirstOrDefaultAsync(x=>x.Id == model.Id);
 
 
-            _dbContext.Students.Update(entity);
+            entity = _mapper.Map<Student>(model);
+
+            /*entity.FullName = model.FullName ?? entity.FullName;
+            entity.PhoneNummber = model.PhoneNummber ?? entity.PhoneNummber;*/
+
+
+            _dbContext.Students.Remove(entity);
+
+           await _dbContext.Students.AddAsync(entity);
+
+
             await _dbContext.SaveChangesAsync();
         }
     }

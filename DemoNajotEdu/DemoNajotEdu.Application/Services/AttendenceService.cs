@@ -21,7 +21,7 @@ namespace DemoNajotEdu.Application.Services
                                          .Include(x => x.Group)
                                          .FirstOrDefaultAsync(x => x.Id == model.LessonId);
 
-                if(lesson == null || lesson.Group.TeacherId != _currentUserService.UserId )
+                if(lesson == null || lesson.Group.TeacherId == _currentUserService.UserId )
                 {
                 throw new Exception("Not Found");
                 }

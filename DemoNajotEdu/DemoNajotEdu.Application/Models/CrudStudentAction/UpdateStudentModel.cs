@@ -7,5 +7,7 @@
         public string FullName { get; set; } = string.Empty;
 
         public string PhoneNummber { get; set; } = string.Empty;
+
+      
     }
 }

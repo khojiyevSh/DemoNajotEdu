@@ -1,4 +1,5 @@
-﻿using DemoNajotEdu.Application.Abstractions;
+﻿using AutoMapper;
+using DemoNajotEdu.Application.Abstractions;
 using DemoNajotEdu.Application.Models.CrudTeacherAction;
 using DemoNajotEdu.Domain.Entities;
 using DemoNajotEdu.Domain.Enums;
@@ -10,22 +11,18 @@ namespace DemoNajotEdu.Application.Services
     {
         private readonly IApplecationDbContext _dbContext;
         private readonly IHashProvider _hashProvider;
+        private readonly IMapper _mapper;
 
-        public TeacherService(IApplecationDbContext dbContext,IHashProvider hashProvider)
+        public TeacherService(IApplecationDbContext dbContext,IHashProvider hashProvider , IMapper mapper)
         {
             _dbContext = dbContext;
             _hashProvider = hashProvider;
+            _mapper = mapper;
         }
 
         public async Task CreateAsync(CreateTeacherModel model)
         {
-            var entity = new User()
-            {
-                FullName = model.FullName,
-                UserName = model.UserName,
-                PasswordHash = _hashProvider.GetHash(model.Password),
-                Role = UserRole.Teacher
-            };
+            var entity = _mapper.Map<User>(model);
 
             await _dbContext.Users.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
@@ -46,17 +43,11 @@ namespace DemoNajotEdu.Application.Services
 
         public async Task<List<ViewTeacherModel>> GetByallAsync()
         {
-            return await _dbContext.Users
-
+            var view = await _dbContext.Users
                 .Where(x => x.Role == UserRole.Teacher)
-                .Select(x => new ViewTeacherModel()
-                {
-                    Id = x.Id,
-                    FullName = x.FullName,
-                    UserName = x.UserName,
-
-                })
                 .ToListAsync();
+
+            return _mapper.Map<List<ViewTeacherModel>>(view);
         }
 
         public async Task<ViewTeacherModel> GetByIdAsync(int id)
@@ -68,12 +59,7 @@ namespace DemoNajotEdu.Application.Services
                 throw new Exception("Not Found");
             }
 
-            return new ViewTeacherModel()
-            {
-                Id = entity.Id,
-                FullName = entity.UserName,
-                UserName = entity.UserName,
-            };
+            return _mapper.Map<ViewTeacherModel>(entity);
         }
 
         public async Task UpdateAsync(UpdateTeacherModel model)
@@ -85,9 +71,7 @@ namespace DemoNajotEdu.Application.Services
                 throw new Exception("Not Found");
             }
 
-            entity.FullName = model.FullName ?? entity.FullName;
-            entity.UserName = model.UserName ?? entity.UserName;
-            entity.PasswordHash = model.Password == null ? entity.PasswordHash :_hashProvider.GetHash(model.Password); 
+            _mapper.Map<User>(entity);
 
             _dbContext.Users.Update(entity);
             await _dbContext.SaveChangesAsync();

@@ -1,4 +1,5 @@
-﻿using DemoNajotEdu.Application.Abstractions;
+﻿using AutoMapper;
+using DemoNajotEdu.Application.Abstractions;
 using DemoNajotEdu.Application.Models.CrudGroupAction;
 using DemoNajotEdu.Application.Models.CrudStudentGroupAction;
 using DemoNajotEdu.Application.Models.LessonModel;
@@ -10,23 +11,20 @@ namespace DemoNajotEdu.Application.Services
     public class GroupService : IGroupService
     {
         private readonly IApplecationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public GroupService(IApplecationDbContext dbContext)
+        public GroupService(IApplecationDbContext dbContext,IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task CreateAsync(CreateGroupModel model)
         {
-            var entity = new Group()
-            {
-                Name = model.Name,
-                TeacherId = model.TeacherId,
-                StartDate = model.StartDate.ToDateTime(TimeOnly.MinValue).ToLocalTime(),
-                EndDate = model.EndDate.ToDateTime(TimeOnly.MaxValue).ToLocalTime(),
-            };
+            var entity = _mapper.Map<Group>(model);
 
-             _dbContext.Groups.Add(entity);
+
+            _dbContext.Groups.Add(entity);
 
             var lessenes = AddGroupLesson(entity, model.StartTimeLesson, model.EndTimeLesson);
 
@@ -50,7 +48,7 @@ namespace DemoNajotEdu.Application.Services
 
         public async Task<List<ViewGroupModel>> GetByallAsync()
         {
-            return await _dbContext.Groups
+             return await _dbContext.Groups
                .Select(x => new ViewGroupModel()
                {
                    Id = x.Id,
@@ -77,7 +75,7 @@ namespace DemoNajotEdu.Application.Services
                 Name = entity.Name,
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate,
-                TeacherId = entity.TeacherId,
+                TeacherId=entity.TeacherId
             };
         }
 
@@ -90,8 +88,7 @@ namespace DemoNajotEdu.Application.Services
                 throw new Exception("Not Found");
             }
 
-            entity.Name = model.Name ?? entity.Name;
-            entity.TeacherId = model.TeacherId ?? entity.TeacherId;
+          _mapper.Map<UpdateGroupModel>(entity);
 
             _dbContext.Groups.Update(entity);
             await _dbContext.SaveChangesAsync();
@@ -147,17 +144,10 @@ namespace DemoNajotEdu.Application.Services
 
         public async Task<List<LessonViewModel>> GetlessonsAsync(int groupId)
         {
-           var lessons =  await _dbContext.Lessons.Where(x => x.GroupId == groupId)
-                .Select(x => new LessonViewModel()
-                {
-                    Id = x.Id,
-                    EndDateTime = x.EndDateTime,
-                    StartDateTime=x.StartDateTime,
-                    GroupId =groupId
+           var lessons =await _dbContext.Lessons.Where(x => x.GroupId == groupId)
+                .ToListAsync();
 
-                }).ToListAsync();
-
-            return lessons;
+            return _mapper.Map<List<LessonViewModel>>(lessons);
         }
 
         public async Task DeleteGroupStudentAsync(int groubId, int studentId)

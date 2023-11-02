@@ -25,9 +25,8 @@ namespace DemoNajotEdu.Infrastructure
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<ITokenService, JWTService>();
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IHashProvider,HashProvider>();
+            services.AddSingleton<IHashProvider,HashProvider>();
             services.AddScoped<IFileUploadService,FileUploadServie>();
-
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
               .AddJwtBearer(options =>
